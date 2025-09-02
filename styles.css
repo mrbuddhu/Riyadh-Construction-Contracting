@@ -1137,6 +1137,8 @@ header .cta-buttons {
         width: calc(100% - 32px);
         max-width: 100%;
     }
+    /* Fix mobile shift: neutralize desktop offset */
+    .section-cta { transform: none; }
     
     .contact-cta h2 {
         font-size: 2rem;
@@ -1158,16 +1160,17 @@ header .cta-buttons {
     .about-cta .cta-buttons {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 14px; /* extra spacing to avoid overlap */
     }
 
     .section-cta .btn,
     .contact-cta .btn,
     .about-cta .btn {
         width: 100%;
-        max-width: 300px;
+        max-width: 340px;
         justify-content: center;
         margin: 0; /* prevent accidental overlap from margins */
+        transform: none !important; /* prevent lift causing visual overlap */
     }
 }
 
@@ -1179,6 +1182,9 @@ header .cta-buttons {
             0 4px 8px rgba(0, 0, 0, 0.15),
             0 8px 16px rgba(0, 0, 0, 0.2);
     }
+    .about-cta .btn:hover,
+    .section-cta .btn:hover,
+    .contact-cta .btn:hover { transform: none; }
 }
 
 /* Extra guard: stack CTA buttons vertically on small phones */
