@@ -2832,9 +2832,10 @@ header .cta-buttons {
         justify-content: center;
         position: relative;
         gap: 0;
-        padding: 8px 12px;
+        padding: 12px 12px; /* thicker navbar on mobile */
         padding-right: 44px;   /* space for hamburger on right */
         padding-left: 12px;    /* minimal left padding since CTAs are in dropdown */
+        min-height: 56px;      /* ensure consistent height */
     }
 
     .mobile-menu-btn {
@@ -2844,9 +2845,9 @@ header .cta-buttons {
         top: 50%;
         transform: translateY(-50%);
         font-size: 22px;
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px; /* center icon inside */
     }
 
     header .logo {
