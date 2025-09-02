@@ -1812,10 +1812,12 @@ header .cta-buttons {
     .service-card {
         flex: 1 1 100%;
         min-width: 100%;
+        height: auto; /* avoid cropping on small screens */
     }
     
     .service-content {
         padding: 24px;
+        padding-bottom: 28px; /* ensure space for quote button */
     }
     
     .service-process {
