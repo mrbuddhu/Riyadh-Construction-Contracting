@@ -158,31 +158,26 @@ document.querySelectorAll('img').forEach(img => {
 // Mobile menu toggle (if needed)
 function createMobileMenu() {
     const header = document.querySelector('header nav');
-    const mobileMenuBtn = document.createElement('button');
-    mobileMenuBtn.className = 'mobile-menu-btn';
-    mobileMenuBtn.innerHTML = '☰';
-    mobileMenuBtn.style.display = 'none';
-    
-    mobileMenuBtn.addEventListener('click', function() {
-        const ul = header.querySelector('ul');
-        ul.style.display = ul.style.display === 'none' ? 'flex' : 'none';
-    });
-    
-    header.insertBefore(mobileMenuBtn, header.firstChild);
-    
-    // Show mobile menu button on small screens
-    function checkMobile() {
+    const mobileMenuBtn = header.querySelector('.mobile-menu-btn');
+    const navList = header.querySelector('ul');
+
+    function updateMobileState() {
         if (window.innerWidth <= 768) {
-            mobileMenuBtn.style.display = 'block';
-            header.querySelector('ul').style.display = 'none';
+            navList.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
         } else {
-            mobileMenuBtn.style.display = 'none';
-            header.querySelector('ul').style.display = 'flex';
+            navList.classList.add('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
     }
-    
-    window.addEventListener('resize', checkMobile);
-    checkMobile();
+
+    mobileMenuBtn.addEventListener('click', function() {
+        const isOpen = navList.classList.toggle('open');
+        mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    window.addEventListener('resize', updateMobileState);
+    updateMobileState();
 }
 
 // Initialize mobile menu
@@ -288,15 +283,23 @@ document.querySelectorAll('section').forEach(section => {
     sectionObserver.observe(section);
 });
 
-// Add parallax effect to hero section
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
+// Add parallax effect to hero section (disabled on mobile to avoid layout jump)
+function bindParallax() {
     const hero = document.querySelector('.hero-bg');
-    if (hero) {
+    if (!hero) return;
+    const handler = () => {
+        const scrolled = window.pageYOffset;
+        if (window.innerWidth <= 768) {
+            hero.style.transform = 'translateY(0)';
+            return;
+        }
         const rate = scrolled * -0.5;
         hero.style.transform = `translateY(${rate}px)`;
-    }
-});
+    };
+    window.addEventListener('scroll', handler);
+    handler();
+}
+bindParallax();
 
 // Add counter animation for metrics
 function animateCounters() {
