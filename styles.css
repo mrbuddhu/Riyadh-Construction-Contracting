@@ -252,6 +252,9 @@ header .cta-buttons {
     gap: 8px;
 }
 
+/* Hide dropdown CTA items by default on desktop */
+.nav-cta-item { display: none; }
+
 /* Mobile menu button */
 .mobile-menu-btn {
     display: none;
@@ -430,6 +433,57 @@ header .cta-buttons {
     justify-content: center;
     margin: 36px 0;
     flex-wrap: wrap;
+}
+
+/* Hero Contact Strip */
+.hero-contact-strip {
+    margin: 24px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: stretch;
+    max-width: 900px;
+}
+
+.hero-contact-strip .strip-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 10px 14px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.hero-contact-strip .strip-icon {
+    font-size: 18px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+.hero-contact-strip .strip-text h4 {
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+.hero-contact-strip .strip-text a,
+.hero-contact-strip .strip-text p {
+    margin: 0;
+    font-size: 13px;
+    color: #ffffff;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .hero-contact-strip {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 0 16px;
+    }
 }
 
 .btn-icon {
@@ -2772,8 +2826,16 @@ header .cta-buttons {
     
     .hero-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: 12px;
+        padding: 0 16px;
     }
+
+    /* Mobile hero buttons: Call first, WhatsApp second */
+    .hero-buttons .btn { padding: 10px 18px; font-size: 14px; }
+    .hero-buttons .btn.primary { order: 1; width: 100%; max-width: 300px; margin: 0 auto; }
+    .hero-buttons .btn.success { order: 2; width: 100%; max-width: 300px; margin: 0 auto; }
+    .hero-buttons .btn .btn-icon { margin-left: 8px; }
     
     .hero-features {
         flex-direction: column;
