@@ -213,6 +213,12 @@ createScrollProgress();
 
 // Add lazy loading for images
 function lazyLoadImages() {
+    // Ensure all non-critical images are lazy-loaded on mobile/slow networks
+    document.querySelectorAll('img:not([data-priority])').forEach(img => {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+        if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+
     const images = document.querySelectorAll('img[data-src]');
     
     const imageObserver = new IntersectionObserver((entries, observer) => {

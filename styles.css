@@ -1068,9 +1068,28 @@ header .cta-buttons {
 
 .section-cta .cta-buttons {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+/* Desktop enhancements for CTA buttons */
+@media (min-width: 769px) {
+    .section-cta .cta-buttons { flex-wrap: nowrap; align-items: center; }
+    .section-cta .btn,
+    .about-cta .btn,
+    .contact-cta .btn {
+        padding: 14px 26px;
+        font-size: 1rem;
+        min-width: 180px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+    }
+    /* RTL: put primary on the right, secondary on the left */
+    .section-cta .btn.primary { order: 1; }
+    .section-cta .btn.success,
+    .section-cta .btn.btn-outline { order: 2; }
 }
 
 .contact-cta {
