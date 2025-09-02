@@ -211,28 +211,12 @@ function createScrollProgress() {
 // Initialize scroll progress
 createScrollProgress();
 
-// Add lazy loading for images
+// Disable lazy loading globally as requested
 function lazyLoadImages() {
-    // Ensure all non-critical images are lazy-loaded on mobile/slow networks
-    document.querySelectorAll('img:not([data-priority])').forEach(img => {
-        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
-        if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    // Remove any lazy-loading attributes that might have been added
+    document.querySelectorAll('img').forEach(img => {
+        if (img.getAttribute('loading') === 'lazy') img.removeAttribute('loading');
     });
-
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
 }
 
 // Initialize lazy loading
