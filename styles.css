@@ -2846,8 +2846,12 @@ header .cta-buttons {
         font-weight: 800;
         max-width: calc(100% - 180px); /* avoid overlap with CTAs */
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        text-overflow: clip;
+        white-space: normal; /* allow wrapping */
+        line-height: 1.2;
+        display: inline-block;
+        word-break: break-word;
+        text-align: center;
     }
 
     /* Mobile dropdown menu styling */
