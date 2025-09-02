@@ -2742,8 +2742,23 @@ header .cta-buttons {
     }
     
     .footer-columns {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* stack columns */
         gap: 20px;
+    }
+
+    /* Prevent overlaps: allow wrapping and no overflow */
+    .footer-columns, .footer-column, .footer-column * {
+        min-width: 0;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+
+    .working-hours .hours-item,
+    .contact-info .contact-item,
+    .location-info p,
+    .location-features .feature {
+        margin-bottom: 8px;
+        line-height: 1.6;
     }
     
     .footer-column h3 {
@@ -2759,7 +2774,7 @@ header .cta-buttons {
     
     .footer-links {
         justify-content: center;
-        gap: 16px;
+        gap: 12px;
         width: 100%;
         flex-wrap: wrap;
     }
