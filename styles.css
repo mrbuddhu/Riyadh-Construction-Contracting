@@ -2804,16 +2804,27 @@ header .cta-buttons {
         flex-direction: row;
         gap: 8px;
         position: absolute;
-        right: 12px;
+        left: 12px;
         top: 50%;
         transform: translateY(-50%);
         width: auto;
     }
 
     header .cta-buttons .btn {
-        padding: 8px 12px;
-        font-size: 12px;
+        padding: 8px;
+        font-size: 0; /* hide text on mobile */
         white-space: nowrap;
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header .cta-buttons .btn svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
     }
 
     /* Mobile navbar: hamburger on left, company name centered */
@@ -2824,14 +2835,14 @@ header .cta-buttons {
         position: relative;
         gap: 0;
         padding: 8px 12px;
-        padding-left: 44px;   /* space for hamburger */
-        padding-right: 120px; /* reserve space for CTA buttons */
+        padding-right: 44px;   /* space for hamburger on right */
+        padding-left: 120px;   /* reserve space for CTA buttons on left */
     }
 
     .mobile-menu-btn {
         display: block;
         position: absolute;
-        left: 12px;
+        right: 12px;
         top: 50%;
         transform: translateY(-50%);
         font-size: 22px;
