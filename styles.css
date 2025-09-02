@@ -31,6 +31,14 @@ body {
     overflow-x: hidden; /* prevent horizontal scroll on mobile */
 }
 
+/* Force LTR rendering for phone numbers even in RTL layout */
+a[href^="tel"],
+.phone-number {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -2677,6 +2685,13 @@ header .cta-buttons {
     transition: color 0.3s ease;
     word-break: break-word;
     overflow-wrap: anywhere;
+}
+
+/* Ensure footer phone renders LTR */
+.footer .contact-value[href^="tel"] {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    display: inline-block;
 }
 
 .contact-value:hover {
