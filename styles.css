@@ -1167,6 +1167,33 @@ header .cta-buttons {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+        margin: 0; /* prevent accidental overlap from margins */
+    }
+}
+
+/* On touch devices, don't lift buttons on hover (prevents visual overlap) */
+@media (hover: none) {
+    .btn:hover {
+        transform: none;
+        box-shadow: 
+            0 4px 8px rgba(0, 0, 0, 0.15),
+            0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Extra guard: stack CTA buttons vertically on small phones */
+@media (max-width: 600px) {
+    .section-cta .cta-buttons,
+    .about-cta .cta-buttons,
+    .contact-cta .contact-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+    .section-cta .cta-buttons > *,
+    .about-cta .cta-buttons > *,
+    .contact-cta .contact-actions > * {
+        flex: 1 1 100%;
     }
 }
 
@@ -2586,6 +2613,8 @@ header .cta-buttons {
     font-size: 0.95rem;
     font-weight: 500;
     transition: color 0.3s ease;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .contact-value:hover {
@@ -2648,11 +2677,13 @@ header .cta-buttons {
     
     .company-slogan {
         font-size: 1.1rem;
+        word-break: break-word;
+        overflow-wrap: anywhere;
     }
     
     .footer-columns {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 20px;
     }
     
     .footer-column h3 {
@@ -2668,6 +2699,28 @@ header .cta-buttons {
     
     .footer-links {
         justify-content: center;
+        gap: 16px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .footer-column,
+    .contact-info,
+    .location-info,
+    .working-hours {
+        text-align: center;
+    }
+
+    .contact-item {
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .company-name {
+        font-size: 1.6rem;
+    }
+    .footer-columns {
         gap: 16px;
     }
 }
