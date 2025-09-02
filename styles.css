@@ -2686,9 +2686,32 @@ header .cta-buttons {
 
 .contact-item {
     margin-bottom: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Footer contact: add clearer gap between label and value */
+.footer .contact-item { gap: 8px; }
+.footer .contact-value { margin-top: 0; white-space: normal; max-width: 100%; }
+/* Ensure footer contact items always wrap and never overlap */
+.footer .contact-info,
+.footer .contact-item,
+.footer .contact-label,
+.footer .contact-value {
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.8;
+}
+.footer .contact-label { display: inline; margin-bottom: 0; }
+@media (max-width: 480px) {
+    .footer .contact-info { gap: 12px; }
+    .footer .contact-item { gap: 10px; padding-top: 6px; padding-bottom: 6px; align-items: center; }
+    .footer .contact-label { margin: 0; display: inline; font-size: 0.95rem; }
+    .footer .contact-value { font-size: 0.95rem; display: inline; }
 }
 
 .contact-label {
