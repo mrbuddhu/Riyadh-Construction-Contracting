@@ -474,6 +474,7 @@ class TestimonialsCarousel {
 // Initialize testimonials carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     new TestimonialsCarousel();
+    bindProjectFilters();
 });
 
 // Contact form toggle function
@@ -490,4 +491,38 @@ function toggleContactForm() {
         form.classList.add('collapsed');
         formCard.classList.remove('expanded');
     }
+}
+
+// Projects filter functionality
+function bindProjectFilters() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.projects-section .project-card');
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cat = btn.dataset.filter;
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.title')?.textContent || '';
+                const text = title + ' ' + (card.querySelector('.desc')?.textContent || '');
+                const haystack = text.toLowerCase();
+
+                if (cat === 'all') {
+                    card.style.display = '';
+                } else if (
+                    (cat === 'renovation' && /ترميم|renov/.test(text)) ||
+                    (cat === 'finishing' && /تشطيب|finish/.test(haystack)) ||
+                    (cat === 'commercial' && /تجاري|mall|office|clinic/.test(haystack)) ||
+                    (cat === 'residential' && /سكني|villa|apartment|house/.test(haystack))
+                ) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
 }
