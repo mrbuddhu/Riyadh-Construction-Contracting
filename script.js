@@ -255,10 +255,9 @@ document.addEventListener('click', function(e) {
     const mobileMenuBtn = header.querySelector('.mobile-menu-btn');
     const ul = header.querySelector('ul');
     
-    if (e.target !== mobileMenuBtn && !ul.contains(e.target)) {
-        if (window.innerWidth <= 768) {
-            ul.style.display = 'none';
-        }
+    if (window.innerWidth <= 768 && e.target !== mobileMenuBtn && !ul.contains(e.target)) {
+        ul.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
     }
 });
 

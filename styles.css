@@ -2800,32 +2800,24 @@ header .cta-buttons {
     }
     
     header .cta-buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: auto;
+        display: none; /* hide top-bar CTAs on mobile; moved into dropdown */
     }
 
-    header .cta-buttons .btn {
-        padding: 8px;
-        font-size: 0; /* hide text on mobile */
-        white-space: nowrap;
-        width: 36px;
-        height: 36px;
+    /* CTA icons inside mobile dropdown */
+    .nav-cta-item { display: none; }
+    header ul .nav-cta {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        margin: 8px 6px 0;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     }
-
-    header .cta-buttons .btn svg {
-        width: 18px;
-        height: 18px;
-        fill: currentColor;
-    }
+    header ul .nav-cta.success { background: linear-gradient(135deg, var(--color-success) 0%, #16a34a 100%); color: #fff; }
+    header ul .nav-cta.primary { background: linear-gradient(135deg, var(--color-accent) 0%, #ffd700 100%); color: #1a1a1a; }
+    header ul .nav-cta svg { width: 20px; height: 20px; fill: currentColor; }
 
     /* Mobile navbar: hamburger on left, company name centered */
     header nav {
@@ -2836,7 +2828,7 @@ header .cta-buttons {
         gap: 0;
         padding: 8px 12px;
         padding-right: 44px;   /* space for hamburger on right */
-        padding-left: 120px;   /* reserve space for CTA buttons on left */
+        padding-left: 12px;    /* minimal left padding since CTAs are in dropdown */
     }
 
     .mobile-menu-btn {
@@ -2855,10 +2847,10 @@ header .cta-buttons {
         margin: 0 auto;
         font-size: 18px;
         font-weight: 800;
-        max-width: calc(100% - 180px); /* avoid overlap with CTAs */
+        max-width: calc(100% - 70px); /* leave room for hamburger */
         overflow: hidden;
-        text-overflow: clip;
-        white-space: normal; /* allow wrapping */
+        text-overflow: ellipsis;
+        white-space: nowrap; /* keep on one line */
         line-height: 1.2;
         display: inline-block;
         word-break: break-word;
@@ -2881,6 +2873,8 @@ header .cta-buttons {
     header ul.open {
         display: flex;
     }
+    /* Show CTA icons only when dropdown is open on mobile */
+    header ul.open .nav-cta-item { display: inline-block; }
     
     /* Mobile testimonials */
     .testimonial-card {
